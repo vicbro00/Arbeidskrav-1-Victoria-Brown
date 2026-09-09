@@ -6,13 +6,13 @@ print("4. Close program")
 
 while True:
     choice = input("What do you want to do? ")
+
     if choice != "1" and choice != "2" and choice != "3" and choice != "4":
         print("Invalid input")
         continue
     if choice == "1":
         # Oppgave 1.1
         user_input = False
-
         while not user_input:
             try:
                 study_sessions = int(input("How many sessions did you have? "))
@@ -58,9 +58,9 @@ while True:
 
             if "python".lower() in text.lower():
                 print(text.title())
+
     elif choice == "3":
         # Oppgave 1.3
-
         start = int(input("Give a starting value: "))
         end = int(input("Give an end value: "))
         total = 0
