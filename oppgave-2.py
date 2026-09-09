@@ -51,7 +51,7 @@ while True:
             print(sessions)
 
     elif choice == "3":
-        for completed in [c for c in all_sessions if c.get("status") == "Completed"]:
+        for completed in [session for session in all_sessions if session.get("status") == "Completed"]:
             print(completed)
 
     elif choice == "4":
@@ -67,8 +67,11 @@ while True:
         print("Sorted by duration", sorted(all_sessions, key=itemgetter("duration_minutes")))
 
     elif choice == "6":
-        print("In progress")
-        # Show first the total duration for completed sessions
-        # Then show the average duration for completed sessions
+        # Should only display the total and average for completed sessions
+        # Should not be for sessions containing "planned"
+        total = sum(session.get("duration_minutes", 0) for session in all_sessions)
+        print(f"The total duration for all sessions is: {total}")
+        average = sum(session.get("duration_minutes", 0) for session in all_sessions) / len(all_sessions)
+        print(f"The average duration for all sessions is: {average}")
     elif choice == "7":
         break
