@@ -1,7 +1,7 @@
 from operator import itemgetter
 
 # Pre-made sessions
-allSessions = [
+all_sessions = [
     {"topic": "Loops",
         "duration_minutes": 20,
         "status": "Completed"},
@@ -38,33 +38,33 @@ while True:
 
     if choice == "1":
         print("Register a new session")
-        newSession = {
+        new_session = {
             "topic": input("What is the session topic? ").capitalize(),
             "duration_minutes": int(input("How long is the session? ")),
             "status": input("Planned or completed? ").capitalize()
         }
-        allSessions.append(newSession)
-        print(newSession)
+        all_sessions.append(new_session)
+        print(new_session)
 
     elif choice == "2":
-        for sessions in allSessions:
+        for sessions in all_sessions:
             print(sessions)
 
     elif choice == "3":
-        for completed in [c for c in allSessions if c.get("status") == "Completed"]:
+        for completed in [c for c in all_sessions if c.get("status") == "Completed"]:
             print(completed)
 
     elif choice == "4":
         key = "topic"
         search = input("What topic do you want to look for? ").strip()
-        matches = [session for session in allSessions if session[key] == search.lower()]
+        matches = [session for session in all_sessions if session[key] == search.lower()]
         if matches:
             print(f"Found {len(matches)} match(es): {matches}")
         else:
             print("No matching results.")
 
     elif choice == "5":
-        print("Sorted by duration", sorted(allSessions, key=itemgetter("duration_minutes")))
+        print("Sorted by duration", sorted(all_sessions, key=itemgetter("duration_minutes")))
 
     elif choice == "6":
         print("In progress")
