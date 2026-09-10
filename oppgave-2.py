@@ -10,16 +10,15 @@ all_sessions = [
         "status": "Completed"},
     {"topic": "Arrays",
         "duration_minutes": 50,
-        "status": "Planned"},
+        "status": "Completed"},
     {"topic": "Tuples",
         "duration_minutes": 60,
         "status": "Planned"},
     {"topic": "Variables",
         "duration_minutes": 30,
-        "status": "Completed"}
+        "status": "Planned"}
 ]
 
-# Still need if else conditions if user has an invalid input etc
 while True:
     # Menu
     print("1. Register a session")
@@ -37,14 +36,36 @@ while True:
         continue
 
     if choice == "1":
-        print("Register a new session")
-        new_session = {
-            "topic": input("What is the session topic? ").capitalize(),
-            "duration_minutes": int(input("How long is the session? ")),
-            "status": input("Planned or completed? ").capitalize()
-        }
+        new_session = {}
+        while True:
+            topic = input("What is the topic? ").capitalize()
+            if topic and topic.strip() and topic is not None:
+                new_session["topic"] = topic
+            else:
+                print("Try again")
+                continue
+            break
+        while True:
+            try:
+                duration = int(input("How long was the session in minutes? "))
+                if duration <= 0:
+                    print("Give a positive number and try again")
+                    continue
+            except ValueError:
+                print("Not a valid number. Try again")
+                continue
+            new_session["duration_minutes"] = duration
+            break
+        while True:
+            status = input("Planned or Completed? ").capitalize()
+            if status != "Planned" and status != "Completed":
+                print("Try again")
+                continue
+            else:
+                new_session["status"] = status
+            break
         all_sessions.append(new_session)
-        print(new_session)
+        print(all_sessions)
 
     elif choice == "2":
         for sessions in all_sessions:
@@ -55,23 +76,28 @@ while True:
             print(completed)
 
     elif choice == "4":
-        key = "topic"
-        search = input("What topic do you want to look for? ").strip()
-        matches = [session for session in all_sessions if session[key] == search.lower()]
-        if matches:
-            print(f"Found {len(matches)} match(es): {matches}")
-        else:
-            print("No matching results.")
+        while True:
+            key = "topic"
+            search = input("What topic do you want to look for? ").strip()
+            matches = [session for session in all_sessions if session[key] == search.capitalize()]
+            if matches:
+                print(f"Found {len(matches)} match(es): {matches}")
+                break
+            else:
+                print("No matching results.")
+            continue
 
     elif choice == "5":
         print("Sorted by duration", sorted(all_sessions, key=itemgetter("duration_minutes")))
 
     elif choice == "6":
-        # Should only display the total and average for completed sessions
-        # Should not be for sessions containing "planned"
-        total = sum(session.get("duration_minutes", 0) for session in all_sessions)
-        print(f"The total duration for all sessions is: {total}")
-        average = sum(session.get("duration_minutes", 0) for session in all_sessions) / len(all_sessions)
-        print(f"The average duration for all sessions is: {average}")
+        completed_sessions = [session for session in all_sessions if session["status"] == "Completed"]
+        total = sum(session.get("duration_minutes", 0) for session in completed_sessions)
+        if len(completed_sessions) <= 0:
+            print("Cannot divide by 0")
+        else:
+            print(f"The total duration for all sessions is: {total}")
+            average = sum(session.get("duration_minutes", 0) for session in completed_sessions) / len(completed_sessions)
+            print(f"The average duration for all sessions is: {average}")
     elif choice == "7":
         break
