@@ -88,7 +88,7 @@ while True:
             continue
 
     elif choice == "5":
-        print("Sorted by duration", sorted(all_sessions, key=itemgetter("duration_minutes")))
+        print("Sorted by duration", sorted(all_sessions, key=itemgetter("duration_minutes"), reverse=True))
 
     elif choice == "6":
         completed_sessions = [session for session in all_sessions if session["status"] == "Completed"]
@@ -98,6 +98,6 @@ while True:
         else:
             print(f"The total duration for all sessions is: {total}")
             average = sum(session.get("duration_minutes", 0) for session in completed_sessions) / len(completed_sessions)
-            print(f"The average duration for all sessions is: {average}")
+            print(f"The average duration for all sessions is: {average:.2f}")
     elif choice == "7":
         break
