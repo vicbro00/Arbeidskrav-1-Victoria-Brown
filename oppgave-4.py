@@ -79,4 +79,28 @@ with open("supporthenvendelser.csv", "r", encoding="utf-8") as f:
     print(f"Category with the most issues is: {highest_value}")
 
     # Shows sorted unresolved issues
-    print(f"Unresolved issues from longest to shortest: {sorted(unresolved_count, key=lambda row: row[2], reverse=True)}")
+    sorted_unresolved_issues = sorted(unresolved_count, key=lambda row: row[2], reverse=True)
+    print(sorted_unresolved_issues)
+
+# Generate a support-rapport.txt file
+with open(rapport_path, "w", encoding="utf-8") as file:
+    file.write("--- Minutes ---\n")
+    file.write(f"Total minutes in issues: {total} minutes\n")
+    file.write(f"Average minutes in issues: {average:.1f} minutes\n")
+    file.write("\n")
+    file.write("--- Categories ---\n")
+    for c, category in category_count.items():
+        file.write(f"Category: {c}: {category} values\n")
+    file.write(f"Category with the most issues is: {highest_value}\n")
+    file.write("\n")
+    file.write("--- Validation ---\n")
+    file.write(f"Number of valid rows are: {valid}\n")
+    for r, resolved in resolved_count.items():
+        if r == "yes":
+            file.write(f"Resolved issues are: {resolved}\n")
+        else:
+            file.write(f"Unresolved issues are: {resolved}\n")
+    file.write("\n")
+    file.write("--- Sorted issues ---\n")
+    for unresolved in sorted_unresolved_issues:
+        file.write(f"{unresolved[0]}, {unresolved[1]}, {unresolved[2]}, {unresolved[3]}\n")
