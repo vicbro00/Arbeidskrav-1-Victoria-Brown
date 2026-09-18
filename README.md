@@ -1,9 +1,16 @@
 # Victoria Louise Brown
 
+## Oppgave 1:
+Filer:
+[oppgave-1.py](oppgave-1.py)
+
 ## Oppgave 2:
 Jeg valgte å strukturere dataene mine innenfor en liste som heter all_sessions.
 Innenfor denne listen har jeg 5 dictionaries for studie økter.
 Når brukeren da lager en ny økt, blir den lagret som en ny dictionary innenfor all_sessions listen.
+
+Filer:
+[oppgave-2.py](oppgave-2.py)
 
 ## Oppgave 3:
 Dokumentasjonens nettside jeg brukte var for det meste disse: 
@@ -64,3 +71,29 @@ Gyldig resultat: 23.07.2000
 Funksjon: chronological_list:
 Input: nei, 23.07.2000
 Ugyldig resultat: feilmelding "Invalid input. Try again"
+
+Filer:
+[oppgave-3.py](oppgave-3.py)
+
+## Oppgave 4
+For del 4 av denne oppgaven så var det første jeg gjorde var å endre:
+if request["is_resolved"] = "yes":
+til:
+if request["is_resolved"] == "yes":
+Neste jeg gjorde var å legge til None i selve funksjonen, slik at det ikke blir en error dersom argumentet ikke er et tall.
+Deretter la jeg til int foran (request["minutes"]), siden minutes må være et heltall, og ikke en string
+Så endret jeg return valuen fra total_minutes til bare total, siden der ikke er en variabel som heter total_minutes,
+og det er jo totalen vi vil returnere og bruke opp igjen.
+Deretter endret jeg total = int(request["minutes"]), til total += int(request["minutes"]), slik at verdien ikke blir det samme gjennom hele loopen.
+Nå vil det bli lagt til en for hver gang koden går gjennom loopen.
+Så la jeg til en try og except blokk, slik at viss valuen er feil, så vil ikke koden kjøre.
+Det siste jeg så gjorde var å legge til et argument i printen.
+Jeg endret fra ingen argument: print(sum_resolved_minutes()) til:
+print(sum_resolved_minutes([{"is_resolved": "yes", "minutes": 13}, {"is_resolved": "yes", "minutes": 15}, {"is_resolved": "yes", "minutes": 10}]))
+Jeg såg at i selve funksjonen, så måtte argumentet være en liste med dictionaries, hvor jeg trenger to keys og to values.
+Etter jeg la inn dette argumentet, så kjørte jeg koden, og resultatet jeg fikk var: 38 minutter totalt.
+
+Filer:
+[supporthenvendelser.csv](supporthenvendelser.csv)
+[support_rapport.txt](support_rapport.txt)
+[oppgave-4.py](oppgave-4.py)

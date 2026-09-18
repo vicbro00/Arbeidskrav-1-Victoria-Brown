@@ -1,6 +1,7 @@
 from pathlib import Path
 import csv
 
+# Oppgave 4.1 og oppgave 4.2
 print(f"Current directory is: {Path.cwd()}")
 data_directory = Path(".") / "supporthenvendelser.csv"
 support_path = Path(".") / "supporthenvendelser.csv"
@@ -82,6 +83,7 @@ with open("supporthenvendelser.csv", "r", encoding="utf-8") as f:
     sorted_unresolved_issues = sorted(unresolved_count, key=lambda row: row[2], reverse=True)
     print(sorted_unresolved_issues)
 
+# Oppgave 4.3
 # Generate a support-rapport.txt file
 with open(rapport_path, "w", encoding="utf-8") as file:
     file.write("--- Minutes ---\n")
@@ -104,3 +106,16 @@ with open(rapport_path, "w", encoding="utf-8") as file:
     file.write("--- Sorted issues ---\n")
     for unresolved in sorted_unresolved_issues:
         file.write(f"{unresolved[0]}, {unresolved[1]}, {unresolved[2]}, {unresolved[3]}\n")
+
+# Oppgave 4.4
+def sum_resolved_minutes(requests: list[dict[str, str | int]]) -> int | None:
+    try:
+        total = 0
+        for request in requests:
+            if request["is_resolved"] == "yes":
+                total += int(request["minutes"])
+        return total
+    except ValueError:
+        print("Invalid")
+
+print(sum_resolved_minutes([{"is_resolved": "yes", "minutes": 13}, {"is_resolved": "yes", "minutes": 15}, {"is_resolved": "yes", "minutes": 10}]))
