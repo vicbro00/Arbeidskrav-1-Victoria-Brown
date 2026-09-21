@@ -1,5 +1,11 @@
 import datetime as dt
-from operator import attrgetter, index
+from operator import attrgetter
+
+from pathlib import Path
+from time import strptime
+
+print(f"Current directory is: {Path.cwd()}")
+activities_path = Path(".") / "activities.txt"
 
 # Class of activities
 class Activity:
@@ -152,7 +158,31 @@ def show_number_activities():
     print(f"Total completed activities: {total_completed}")
 
 def save_activities():
-    print("In progress")
+    with open(activities_path, "w", encoding="utf-8") as file:
+        for activity in activities:
+            file.write(f"Title: {activity.title}\n")
+            file.write(f"Category: {activity.category}\n")
+            file.write(f"Date: {activity.date}\n")
+            file.write(f"Duration: {activity.estimated_minutes}\n")
+            file.write(f"Status: {activity.status}\n")
+    print("Activities saved")
+
+    with open(activities_path, "r", encoding="utf-8") as file:
+        for line in file:
+            activity = line.strip("\n").split(": ")
+            if line.startswith("Title"):
+                title = activity[1]
+            elif line.startswith("Category"):
+                category = activity[1]
+            elif line.startswith("Date"):
+                date = strptime(activity[1])
+            elif line.startswith("Duration"):
+                duration = int(activity[1])
+            elif line.startswith("Status"):
+                status = activity[1]
+                new_activity = Activity(title, category, date, duration, status)
+                activities.append(new_activity)
+    print("Activities reread")
 
 # Empty activity list
 activities = []
