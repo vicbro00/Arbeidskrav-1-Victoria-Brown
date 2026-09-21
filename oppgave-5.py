@@ -58,7 +58,30 @@ def register_and_show_activity():
         print(f"Status: {activity.status}\n")
 
 def search_title_or_category():
-    print("In progress")
+    print("Choose 1 to search for title: ")
+    print("Choose 2 to search for category: ")
+
+    # Lets the user search by title or category
+    while True:
+        search_choice = input("What do you want to do? ")
+        if search_choice == "1":
+            try:
+                title_search = input("Search for a title: ").capitalize()
+                for activity in activities:
+                    if title_search == activity.title:
+                        print(activity)
+                break
+            except TypeError:
+                print("Invalid input")
+        elif search_choice == "2":
+            try:
+                category_search = input("Search for a category: ").capitalize()
+                for activity in activities:
+                    if category_search == activity.category:
+                        print(activity)
+                break
+            except TypeError:
+                print("Invalid input")
 
 def filter_by_status():
     print("In progress")
@@ -69,12 +92,14 @@ def sort_date_duration():
     print("Choose 1 to sort by date")
     print("Choose 2 to sort by duration")
 
-    sort_choice = input("What do you want to do? ")
-
-    if sort_choice == "1":
-        print("Sorted by date", sorted(activities, key=attrgetter("date")))
-    elif sort_choice == "2":
-        print("Sorted by duration", sorted(activities, key=attrgetter("estimated_minutes")))
+    while True:
+        sort_choice = input("What do you want to do? ")
+        if sort_choice == "1":
+            print("Sorted by date", sorted(activities, key=attrgetter("date")))
+            break
+        elif sort_choice == "2":
+            print("Sorted by duration", sorted(activities, key=attrgetter("estimated_minutes")))
+            break
 
 def mark_completed():
     print("In progress")
