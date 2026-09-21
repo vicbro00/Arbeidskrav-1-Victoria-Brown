@@ -1,4 +1,6 @@
 import datetime as dt
+from operator import attrgetter
+
 
 # Class of activities
 class Activity:
@@ -8,6 +10,10 @@ class Activity:
         self.date = date
         self.estimated_minutes = estimated_minutes
         self.status = status
+
+    # Prints the correct output, instead of something unreadable
+    def __repr__(self):
+        return f"Activity: {self.title!r}, {self.category}, {self.date}, {self.estimated_minutes}, {self.status}"
 
     # Marks activity as completed
     def completed(self):
@@ -23,7 +29,16 @@ def register_and_show_activity():
             break
         except ValueError:
             print("Invalid date format. Please try again!")
-    estimated_minutes = int(input("Duration of activity: "))
+    while True:
+        try:
+            estimated_minutes = int(input("Duration of activity: "))
+
+            if estimated_minutes <= 0:
+                print("Minutes is not a positive number")
+                continue
+            break
+        except ValueError:
+            print("Minutes is not a number")
     status = input("Activity planned or completed? ").capitalize()
 
     activity = Activity(
@@ -39,7 +54,7 @@ def register_and_show_activity():
         print(f"\nTitle: {activity.title}")
         print(f"Category: {activity.category}")
         print(f"Date: {activity.date.strftime('%d.%m.%Y')}")
-        print(f"Duration: {activity.estimated_minutes}")
+        print(f"Duration: {activity.estimated_minutes} minutes")
         print(f"Status: {activity.status}\n")
 
 def search_title_or_category():
@@ -49,7 +64,17 @@ def filter_by_status():
     print("In progress")
 
 def sort_date_duration():
-    print("In progress")
+    # If user chooses 1 here: sort by date
+    # If user chooses 2 here: sort by duration
+    print("Choose 1 to sort by date")
+    print("Choose 2 to sort by duration")
+
+    sort_choice = input("What do you want to do? ")
+
+    if sort_choice == "1":
+        print("Sorted by date", sorted(activities, key=attrgetter("date")))
+    elif sort_choice == "2":
+        print("Sorted by duration", sorted(activities, key=attrgetter("estimated_minutes")))
 
 def mark_completed():
     print("In progress")
