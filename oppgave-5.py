@@ -1,5 +1,6 @@
 import datetime as dt
 from operator import attrgetter
+from sys import exc_info
 
 
 # Class of activities
@@ -84,7 +85,23 @@ def search_title_or_category():
                 print("Invalid input")
 
 def filter_by_status():
-    print("In progress")
+    # Lets the user filter all activities based on planned or completed
+    while True:
+        filter_choice = input("Filter by planned or completed? ").capitalize()
+        if filter_choice == "Planned":
+            try:
+                for activity in activities:
+                    if activity.status == "planned":
+                        print(activity)
+            except TypeError:
+                print("Invalid input")
+        elif filter_choice == "Completed":
+            try:
+                for activity in activities:
+                    if activity.status == "Completed":
+                        print(activity)
+            except TypeError:
+                print("Invalid input")
 
 def sort_date_duration():
     # If user chooses 1 here: sort by date
