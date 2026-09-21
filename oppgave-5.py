@@ -131,8 +131,25 @@ def mark_completed():
             Activity.completed(selected_activity)
         break
 
-def show_total_activities():
-    print("In progress")
+def show_number_activities():
+    # Shows total number of activities
+    total = 0
+    for x in enumerate(activities, start=1):
+        total += 1
+    print(f"Total activities: {total}")
+
+    # Shows total estimated minutes of all activities
+    total_minutes = 0
+    for activity in activities:
+        total_minutes += activity.estimated_minutes
+    print(f"Total minutes: {total_minutes}")
+
+    # Shows total number of completed activities
+    total_completed = 0
+    for activity in activities:
+         if activity.status == "completed":
+             total_completed += 1
+    print(f"Total completed activities: {total_completed}")
 
 def save_activities():
     print("In progress")
@@ -173,7 +190,7 @@ while True:
         mark_completed()
 
     elif choice == "6":
-        show_total_activities()
+        show_number_activities()
 
     elif choice == "7":
         save_activities()
