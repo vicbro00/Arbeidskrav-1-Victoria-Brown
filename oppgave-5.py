@@ -1,7 +1,5 @@
 import datetime as dt
-from operator import attrgetter
-from sys import exc_info
-
+from operator import attrgetter, index
 
 # Class of activities
 class Activity:
@@ -18,7 +16,7 @@ class Activity:
 
     # Marks activity as completed
     def completed(self):
-        self.status = "Completed"
+        self.status = "completed"
 
 def register_and_show_activity():
     title = input("Title of activity: ").capitalize()
@@ -40,7 +38,7 @@ def register_and_show_activity():
             break
         except ValueError:
             print("Minutes is not a number")
-    status = input("Activity planned or completed? ").capitalize()
+    status = input("Activity planned or completed? ").lower()
 
     activity = Activity(
         title,
@@ -119,7 +117,19 @@ def sort_date_duration():
             break
 
 def mark_completed():
-    print("In progress")
+    print("Choose activity to mark as completed")
+    for idx, x in enumerate(activities, start=1):
+        print(idx, x)
+
+    while True:
+        activity_choice = int(input("Type activity number to complete: "))
+        selected_activity = activities[activity_choice - 1]
+        if selected_activity.status == "completed":
+            print("Activity already completed")
+            continue
+        else:
+            Activity.completed(selected_activity)
+        break
 
 def show_total_activities():
     print("In progress")
