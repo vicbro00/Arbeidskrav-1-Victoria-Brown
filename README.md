@@ -1,5 +1,9 @@
 # Victoria Louise Brown
 
+## Kjøreinstruksjoner:
+For de fleste oppgavene her, så trenger man bare å kjøre programmet, så vil du i de fleste oppgavene få opp en meny med 
+valg.
+
 ## Oppgave 1:
 Filer:
 [oppgave-1.py](oppgave-1.py)
@@ -97,3 +101,21 @@ Filer:
 [supporthenvendelser.csv](supporthenvendelser.csv)
 [support_rapport.txt](support_rapport.txt)
 [oppgave-4.py](oppgave-4.py)
+
+## Oppgave 5
+### Kjøreinstruksjoner:
+Enten trykk på kjør terminalen eller på tastaturet: ctrl + F5.
+Da får du opp en meny som forteller hvilke funksjoner du kan bruke.
+Velg så et tall som korresponderer med det du vil gjøre i programmet
+Vær obs på at første gang du starter programmet vil det ikke være noen aktiviteter lagret i programmet.
+Så først lag en ny aktivitet, så velg valgmeny 7 for å lagre aktiviteten.
+
+### Eksempeldatafil:
+[activities.txt](activities.txt)
+
+### Git historikk:
+Hele git repository historikken har jeg lagt inn i en egen txt fil:
+[Git-history.txt](Git-history.txt)
+
+## Video
+[Arbeidskrav-1-Victoria-Brown – oppgave-5.py 2026-09-23 14-44-47.mp4](../../../Videos/Captures/Arbeidskrav-1-Victoria-Brown%20%E2%80%93%20oppgave-5.py%202026-09-23%2014-44-47.mp4)
