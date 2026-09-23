@@ -103,6 +103,9 @@ Filer:
 [oppgave-4.py](oppgave-4.py)
 
 ## Oppgave 5
+Filer:
+[oppgave-5.py](oppgave-5.py)
+
 ### Kjøreinstruksjoner:
 Enten trykk på kjør terminalen eller på tastaturet: ctrl + F5.
 Da får du opp en meny som forteller hvilke funksjoner du kan bruke.
